@@ -18,7 +18,7 @@ rpm-build
 
 1. Clone this repository 
 2. In the repository home directory, run
-
+```
 	cp cloudwatch.spec ~/rpmbuild/SPECS/
 
 	wget http://ec2-downloads.s3.amazonaws.com/CloudWatch-2010-08-01.zip
@@ -26,6 +26,7 @@ rpm-build
 	cp CloudWatch-2010-08-01.zip ~/rpmbuild/SOURCES/
 
 	rpmbuild -bb ~/rpmbuild/SPEC/cloudwatch.spec  
+```
 
 RPM will be built and will be located ~/rpmbuild/RPMS/noarch/CloudWatch-1.0.13.4-1.noarch.rpm
 
