@@ -9,12 +9,10 @@ be interested in this packaging.
 
 Current CloudWatch CLI Version in this repo is 1.0.13.4. 
 
-## Requirements
+### Requirements
 
 Requires the following packages to be installed:
 rpm-build
-
-## Usage
 
 ### Building the Redhat/CentOS packages 
 
