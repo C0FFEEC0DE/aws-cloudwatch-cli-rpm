@@ -31,11 +31,11 @@ then
 fi
 mkdir -p $RPM_BUILD_ROOT/%{prefix}/
 
-mkdir -p $RPM_BUILD_ROOT/etc/profile.d
-echo 'export AWS_CLOUDWATCH_HOME=/opt/cloudwatch' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
-echo 'export AWS_CLOUDWATCH_URL=http://monitoring.us-west-1.amazonaws.com' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
-echo 'export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh 
-chmod +x $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
+#mkdir -p $RPM_BUILD_ROOT/etc/profile.d
+#echo 'export AWS_CLOUDWATCH_HOME=/opt/cloudwatch' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
+#echo 'export AWS_CLOUDWATCH_URL=http://monitoring.us-west-1.amazonaws.com' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
+#echo 'export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh 
+#chmod +x $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
 
 unzip -d  $RPM_BUILD_ROOT %{SOURCE0}
 cp -Rp $RPM_BUILD_ROOT/%{name}-%{version}/* $RPM_BUILD_ROOT%{prefix}
@@ -53,6 +53,9 @@ rm -f $RPM_BUILD_ROOT%{prefix}/bin/*.cmd
 %pre
 
 %post
+echo 'export AWS_CLOUDWATCH_HOME=/opt/cloudwatch' > /etc/profile.d/cloudwatch.sh
+echo 'export AWS_CLOUDWATCH_URL=http://monitoring.us-west-1.amazonaws.com' >> /etc/profile.d/cloudwatch.sh
+echo 'export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin' >> /etc/profile.d/cloudwatch.sh
 
 %preun
 if [ "$1" -eq "0" ]
@@ -62,8 +65,6 @@ fi
 
 %postun
 
-%posttrans
-
 %changelog
-* Sat Jan 18 2014 Krasnobai Alexander <l3dz@ya.ru> - 1.0.13.4
+* Sat Jan 18 2014 Krasnobai Alexander <l3dz@ya.ru> - 1.0.13.4-1
 - Initial packaging attempt
