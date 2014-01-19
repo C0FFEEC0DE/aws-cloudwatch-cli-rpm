@@ -31,18 +31,12 @@ then
 fi
 mkdir -p $RPM_BUILD_ROOT/%{prefix}/
 
-#mkdir -p $RPM_BUILD_ROOT/etc/profile.d
-#echo 'export AWS_CLOUDWATCH_HOME=/opt/cloudwatch' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
-#echo 'export AWS_CLOUDWATCH_URL=http://monitoring.us-west-1.amazonaws.com' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
-#echo 'export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin' >> $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh 
-#chmod +x $RPM_BUILD_ROOT/etc/profile.d/cloudwatch.sh
-
 unzip -d  $RPM_BUILD_ROOT %{SOURCE0}
+
 cp -Rp $RPM_BUILD_ROOT/%{name}-%{version}/* $RPM_BUILD_ROOT%{prefix}
 
 # remove windows batch files.
 rm -f $RPM_BUILD_ROOT%{prefix}/bin/*.cmd
-
 
 %files
 %defattr(-,root,root,-)
